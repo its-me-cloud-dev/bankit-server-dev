@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt"); // sha256 사용할 예정이라 사용안해도 됨 임시로 적용.
+const bcrypt = require("bcryptjs"); // sha256 사용할 예정이라 사용안해도 됨 임시로 적용.
 const dotenv = require("dotenv");
 const { validationResult } = require("express-validator");
 
