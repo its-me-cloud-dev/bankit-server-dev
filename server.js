@@ -37,7 +37,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      domain: "localhost",
+      // domain: "localhost",
       path: "/",
       httpOnly: true,
       sameSite: "None",
@@ -47,7 +47,7 @@ app.use(
   })
 );
 const corsOptions = {
-  origin: "https://localhost:5173",
+  origin: process.env.CORS_ORIGIN,
   methods: ["GET", "POST", "OPTIONS"],
   credentials: true,
 };
