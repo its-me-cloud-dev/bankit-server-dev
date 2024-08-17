@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { verifyClient } = require("../utils/clientVerification");
 // 계좌 인증 및 비밀번호 확인 함수
 const validateAccount = (account_number, account_pw, connection) => {
