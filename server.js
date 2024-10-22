@@ -15,15 +15,8 @@ const authMiddleware = require("./middlewares/auth"); // auth middleware 추가
 const path = require("path");
 const cors = require("cors");
 
-// https 설정
-const https = require("https");
+const http = require("http");
 const fs = require("fs");
-
-// SSL 인증서와 키 파일 읽기
-const options = {
-  key: fs.readFileSync("server.key"),
-  cert: fs.readFileSync("server.cert"),
-};
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -37,12 +30,10 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      // domain: "localhost",
       path: "/",
       httpOnly: true,
-      sameSite: "None",
       maxAge: 5400000,
-      secure: true,
+      secure: false,
     },
   })
 );
@@ -65,7 +56,7 @@ setupDB()
     app.use("/group-account", authMiddleware, groupaccountRouter); // authMiddleware 적용
     app.use("/transaction", authMiddleware, transactionRouter); // authMiddleware 적용
     app.use("/profile", authMiddleware, profileRouter); // authMiddleware 적용
-    https.createServer(options, app).listen(PORT, () => {
+    http.createServer(app).listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
   })
